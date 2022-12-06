@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DN Auth</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sign In</h1>
+      <hr />
+
+      <label for="email"><b>Email</b></label>
+      <input
+        type="text"
+        placeholder="Enter your Email"
+        name="email"
+        required
+        id="email"
+      />
+
+      <label for="psw"><b>Password</b></label>
+      <input
+        type="password"
+        placeholder="Enter Password"
+        name="psw"
+        required
+        id="password"
+      />
+
+      <div class="clearfix">
+        <button type="submit" id="sign-in-btn">Sign in</button>
+      </div>
+      <hr />
+      <p>Do not have an account? <a href="./signUp.html">Sign Up</a></p>
+    </div>
+    <script>
+      let signInSubmitButton = document.querySelector("#sign-in-btn");
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");
+      const BASE_URL = "http://localhost:1338";
+
+      signInSubmitButton.addEventListener("click", async () => {
+        let user = {
+          email: email.value,
+          password: password.value,
+        };
+
+        let request = await fetch(`${BASE_URL}/api/v1/signin`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+
+        let message = await request.text();
+
+        alert(message);
+      });
+    </script>
+  </body>
+</html>
