@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Url = require('../models/urlModel')
 const createDB = require('../config/db');
+
 //nanoid(version-3) creates unique id (you can use uuid and short id)
 const { nanoid } = require('nanoid');
-const baseUrl = 'https://UrlShortener.thahsi.repl.co/urlapi/'
+
+//add baseUrl as url of website where you host the website + /urlapi
+//baseUrl is http://localhost:PORT/urlapi/ when running locally
+
+const baseUrl = 'http://localhost:3000/urlapi/'
 
 //connecting databse
 createDB.sync().then(() => console.log('now you can store the data'));
@@ -16,7 +21,7 @@ createDB.sync().then(() => console.log('now you can store the data'));
 router.post("/", async (req, res) => {
   try {
     const { longUrl } = req.body;
-    const shortId = 'https://UrlShortener.thahsi.repl.co/urlapi/' + nanoid(4);
+    const shortId = baseUrl+nanoid(4);
     //inserting values 
     const storeUrl = await Url.create({
       longUrl: longUrl,
