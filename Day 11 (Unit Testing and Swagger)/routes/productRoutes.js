@@ -3,16 +3,16 @@ const router = express.Router();
 require("dotenv").config();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-// const { WebhookClient } = require("discord.js");
+const { WebhookClient } = require("discord.js");
 const Product = require("../models/productModel");
 const Order = require("../models/orderModel");
 const uploadContent = require("../utils/fileUpload");
 const { isAuthenticated, isSeller, isBuyer } = require("../middleware/auth");
 const BASE_URL = process.env.BASE_URL;
 
-// const webhookClient = new WebhookClient({
-//   url: "process.env.DISCORD_WEBHOOK_URL",
-// });
+const webhookClient = new WebhookClient({
+  url: "process.env.DISCORD_WEBHOOK_URL",
+});
 
 router.post("/create", isAuthenticated, isSeller, (req, res) => {
   uploadContent(req, res, async (err) => {
@@ -83,11 +83,11 @@ router.post("/buy/:productID", isAuthenticated, isBuyer, async (req, res) => {
       const createdOrder = await Order.create(orderDetails);
 
       // send a discord message after order is created
-      // webhookClient.send({
-      //   content: `Order Details\nOrderID:${createdOrder.id}\nProduct ID: ${createdOrder.productID}\nProduct Name: ${createdOrder.productName}\nProduct Price: ${createdOrder.productPrice}\nBuyer Name:${req.user.name}\nBuyer Email: ${createdOrder.buyerEmail}`,
-      //   username: "order-keeper",
-      //   avatarURL: "https://i.imgur.com/AfFp7pu.png",
-      // });
+      webhookClient.send({
+        content: `Order Details\nOrderID:${createdOrder.id}\nProduct ID: ${createdOrder.productID}\nProduct Name: ${createdOrder.productName}\nProduct Price: ${createdOrder.productPrice}\nBuyer Name:${req.user.name}\nBuyer Email: ${createdOrder.buyerEmail}`,
+        username: "order-keeper",
+        avatarURL: "https://i.imgur.com/AfFp7pu.png",
+      });
 
       return res.status(201).json({ message: "Order created", createdOrder });
     } else {

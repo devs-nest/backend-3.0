@@ -12,7 +12,7 @@ const Order = createDB.define("order", {
   productPrice: DataTypes.DECIMAL,
   buyerID: DataTypes.INTEGER,
   buyerEmail: DataTypes.STRING,
-  // downloadLink: DataTypes.STRING,
+  downloadLink: DataTypes.STRING,
 });
 
 module.exports = Order;
