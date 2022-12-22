@@ -1,0 +1,5 @@
+node_modules
+.env
+Content/*
+!Content/.gitkeep
+config/db.sqlite

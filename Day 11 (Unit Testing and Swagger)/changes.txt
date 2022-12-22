@@ -1,0 +1,9 @@
+1. Added an addtional field 'downloadLink' to the orders schema
+2. Added an endpoint /api/vi/products/download-content
+3. Added an .env file and moved the following values to .env:
+    a. PORT
+    b. BASE_URL
+    c. STRIPE_SECRET_KEY
+    d. DISCORD_WEBHOOK_URL
+4. Added unit testing (Cannot implement unit tests for routes with route params as mocha does not allow it)
+5. Added Swagger documentation (All user routes)
