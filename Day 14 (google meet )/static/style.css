@@ -1,0 +1,60 @@
+body {
+    background:black;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.Name-Page {
+    width: 400px;
+    padding: 10% 0 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    max-width: 200px;
+    margin: 0 auto 100px;
+    padding: 25px;
+    text-align: center
+}
+
+.form input {
+    font-family: "Roboto", "sans-serif";
+    outline: 1;
+    background: rgb(226, 218, 218);
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 14px
+}
+
+.form button {
+    font-family: "Roboto", "sans-serif";
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.form p {
+    font-family: "Roboto", "sans-serif";
+    font-size: 60%;
+    margin: 15px
+}
+
+.form button:hover {
+    background: #43A047
+}
+
+.form .unknown-form {
+    display: none
+}
