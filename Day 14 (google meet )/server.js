@@ -32,7 +32,7 @@ app.get("/join", (req, res) => {
 app.get("/joinold", (req, res) => {
     res.redirect(
         url.format({
-            pathname: req.query.meeting_id,
+            pathname:`/join/${req.query.meeting_id}`,
             query: req.query,
         })
     );
